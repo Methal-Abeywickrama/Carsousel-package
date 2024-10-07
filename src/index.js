@@ -81,5 +81,7 @@ const carouselController = () => {
 
 }
 
+export { carouselController }
+
 carouselController()
 
