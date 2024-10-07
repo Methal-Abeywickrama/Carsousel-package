@@ -1,3 +1,5 @@
+import { handleSlideChange } from "./navCircle";
+
 export const navigator = (slides, activeImage) => {
   const navigatorBar = document.createElement('div')
   navigatorBar.classList.add('navigator-bar')
@@ -5,17 +7,13 @@ export const navigator = (slides, activeImage) => {
   slides.forEach(slide => {
     const navCircle = document.createElement('div')
     navCircle.classList.add('nav-item')
+    navCircle.dataset.url = slide.src
     navigatorBar.appendChild(navCircle)
 
     // handle click
     navCircle.addEventListener('click', () =>  {
       activeImage.src = slide.src
-
-      
-      const allNavCircles = navigatorBar.querySelectorAll('.nav-item');
-      allNavCircles.forEach(circle => {
-        circle.classList.remove('nav-item-active');
-      });
+      handleSlideChange(navigatorBar, slide.src)
 
       navCircle.classList.add('nav-item-active')
   })

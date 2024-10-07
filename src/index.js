@@ -1,5 +1,6 @@
 import "./styles.css";
 import { navigator } from "./modules/navigator";
+import { handleSlideChange } from "./modules/navCircle"
 //Containes the relevant methods for creating a carousel
 const carouselController = () => {
   const containers = document.querySelectorAll('.carousel-display')
@@ -55,18 +56,26 @@ const carouselController = () => {
       leftOverlay.classList.remove("overlay-visible"),
     );
 
-    // controlling left and right navigation
-    leftOverlay.addEventListener('click', () => {
+    const handleLeftClick = () => {
+      console.log('reached here')
       console.log(position)
       position = previousPosition(position)
       activeImage.src = slides[position].src
-    })
-    rightOverlay.addEventListener('click', () => {
+      handleSlideChange(navbar, activeImage)
+    }
+    const handleRightClick = () => {
       console.log(position)
       position = nextPostition(position)
       console.log(position)
       activeImage.src = slides[position].src
-    })
+      handleSlideChange(navbar, activeImage)
+    }
+    // controlling left and right navigation
+    leftOverlay.addEventListener('click', handleLeftClick)
+    rightOverlay.addEventListener('click', handleRightClick)
+
+    // handle random 5 second firing
+    const autoFire = setInterval(handleRightClick, 5000)
   })
 
 
