@@ -12,15 +12,16 @@ export const navigator = (slides, activeImage) => {
       activeImage.src = slide.src
 
       
+      const allNavCircles = navigatorBar.querySelectorAll('.nav-item');
       allNavCircles.forEach(circle => {
         circle.classList.remove('nav-item-active');
       });
 
       navCircle.classList.add('nav-item-active')
   })
-  const allNavCircles = navigatorBar.querySelectorAll('.nav-item');
+  
 
-  allNavCircles[0].classList.add('nav-item-active')
+  navigatorBar.querySelector('.nav-item').classList.add('nav-item-active')
 
 
   });
