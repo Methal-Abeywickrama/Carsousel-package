@@ -1,5 +1,5 @@
 import "./styles.css";
-
+import { navigator } from "./modules/navigator";
 //Containes the relevant methods for creating a carousel
 const carouselController = () => {
   const containers = document.querySelectorAll('.carousel-display')
@@ -15,7 +15,7 @@ const carouselController = () => {
       return max === num ? 0 : num + 1
     }
     const previousPosition = (num) => {
-      const min = slides.length
+      const min = slides.length;
       return num == 0 ? min - 1 : num - 1
     }
     // Iniitilise the active slide
@@ -25,7 +25,10 @@ const carouselController = () => {
 
     activeImage.src = slides[0].src;
     activeImage.classList.add("active-image");
+    const navbar = navigator(slides, activeImage)
+
     container.appendChild(activeSlide);
+    container.appendChild(navbar)
 
     // Create the left and right overlays
     const leftOverlay = document.createElement("div");
